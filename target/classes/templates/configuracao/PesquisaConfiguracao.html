@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{layout/LayoutPadrao}"
+	xmlns:scplus="http://scplus.senai.com"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	
+<head>
+	<title>Pesquisa de Configura&ccedil&otildees</title>
+</head>
+
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-10">
+						<h1>Pesquisa de Configura&ccedil&otildees</h1>
+					</div>
+					
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn  btn-default" th:href="@{/configuracoes/novo}">
+								<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Configura&ccedil&atildeo</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<form method="GET" th:object="${configuracaoFilter}" th:action="@{/configuracoes}">
+				<div class="row">
+					<div class="form-group  col-sm-6">
+						<label class="control-label" for="banco">Banco</label>
+						<input type="text" class="form-control" id="banco" autofocus="autofocus" th:field="*{banco}"/> 
+					</div>
+					
+					<div class="form-group  col-sm-6" >
+						<label class="control-label" for="nomeBanco">Nome do Banco</label>
+						<input type="text" class="form-control" id="nomeBanco" th:field="*{nomeBanco}"/>
+					</div>
+				</div>
+				
+				<button type="submit" class="btn  btn-primary">Pesquisar</button>
+			
+			</form>
+			
+			<div class="aw-datatable-toolbar">
+				<button class="btn btn-default  btn-xs  js-status-btn  disabled" data:status="ATIVAR" data:url="@{/configuracoes/status/}">
+					<span>Ativar</span>
+				</button>
+				<button class="btn btn-default  btn-xs  js-status-btn  disabled" data:status="DESATIVAR" data:url="@{/configuracoes/status/}">
+					<span>Desativar</span>
+				</button>				
+			</div>
+			
+			<div class="table-responsive  bw-tabela-simples">
+				<table class="table  table-hover">
+					<thead>
+						<tr>
+							<th class="table-usuarios-col-status">
+								<div class="checkbox  aw-checkbox-no-margin">
+									<input type="checkbox" class="js-selecao-todos"/>
+									<label></label>
+								 </div>
+							</th>
+							<th>Banco</th>
+							<th>Nome Banco</th>
+							<th>IP Banco</th>
+							<th>Porta</th>	
+							<th>Status</th>						
+							<th class="table-col-acoes"></th>
+						</tr>						
+					</thead>
+					
+					<tbody>
+					<tr th:each="configuracao : ${pagina.conteudo}">
+						<!-- <tr th:each="configuracao : ${configuracoes}"> -->
+							<td>
+								<div class="checkbox  aw-checkbox-no-margin" > <!-- th:if="${#authentication.principal.usuario.codigo != usuario.codigo}" -->
+									<input type="checkbox" class="js-selecao" data:codigo="${configuracao.codigo}"/>
+									<label></label>
+							 	</div>
+							</td>
+							<td th:text="${configuracao.banco}"></td>
+							<td th:text="${configuracao.nomeBanco}"></td>
+							<td th:text="${configuracao.caminhoBanco}"></td>
+							<td th:text="${configuracao.porta}"></td>
+							<td>
+								<th:block th:if="${configuracao.ativo}">
+									<span class="label label-success">Ativo</span>
+								</th:block>
+								<th:block th:if="${not configuracao.ativo}">
+									<span class="label label-danger">Inativo</span>
+								</th:block>
+							</td>
+							<td class="text-center">
+								<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar" 									
+									 th:href="@{/configuracoes/{codigo}(codigo=${configuracao.codigo})}">
+									<i class="glyphicon glyphicon-pencil"></i>									
+								</a>
+								<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" title="Excluir" href="#" 
+									 data:url="@{/configuracoes/{codigo}(codigo=${configuracao.codigo})}">
+									<i class="glyphicon glyphicon-remove"></i>
+								</a>
+							</td>
+						</tr>
+						<tr th:if="${pagina.vazia}">
+						<!-- <tr th:if="${configuracoes.empty}"> -->						
+							<td colspan="6">Nenhuma configura&ccedil&atildeo encontrado</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<scplus:pagination page="${pagina}"/>				
+			
+		</div>
+		
+	</section>
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/multiselecao.js}"></script>
+	</th:block>	
+</body>	
+</html>

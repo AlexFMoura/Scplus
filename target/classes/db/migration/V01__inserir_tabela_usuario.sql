@@ -1,0 +1,8 @@
+  CREATE TABLE usuario (
+    codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(120) NOT NULL,
+    ativo BOOLEAN DEFAULT true NOT NULL,
+    data_cadastro DATE NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
