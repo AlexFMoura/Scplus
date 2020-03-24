@@ -1,6 +1,6 @@
-Scplus = Scplus || {};
+Ecplus = Ecplus || {};
 
-Scplus.MultiSelecao = (function() {
+Ecplus.MultiSelecao = (function() {
 	
 	function MultiSelecao() {
 		this.statusBtn = $('.js-status-btn');
@@ -61,6 +61,6 @@ Scplus.MultiSelecao = (function() {
 }());
 
 $(function() {
-	var multiSelecao = new Scplus.MultiSelecao();
+	var multiSelecao = new Ecplus.MultiSelecao();
 	multiSelecao.iniciar();
 });

@@ -11,7 +11,7 @@
             initialPoolSize="5" 
             minPoolSize="5"
             maxPoolSize="5"  -->
-    <Resource name="jdbc/scplusDB" auth="Container" 
+<!--     <Resource name="jdbc/scplusDB" auth="Container" 
             factory="org.apache.naming.factory.BeanFactory"
             type="com.mchange.v2.c3p0.ComboPooledDataSource"
             driverClass="com.mysql.cj.jdbc.Driver"
@@ -19,7 +19,18 @@
             user="externo2"
             password="Senha@2020" 
             initialPoolSize="5" 
+            minPoolSize="5" 192.168.1.103
+            maxPoolSize="5" -->
+            
+    <Resource name="jdbc/scplusDB" auth="Container" 
+            factory="org.apache.naming.factory.BeanFactory"
+            type="com.mchange.v2.c3p0.ComboPooledDataSource"
+            driverClass="com.mysql.cj.jdbc.Driver"
+            jdbcUrl="jdbc:mysql://localhost:3306/ecplus?serverTimezone=UTC"
+            user="root"
+            password="root" 
+            initialPoolSize="5" 
             minPoolSize="5"
-            maxPoolSize="5"            
+            maxPoolSize="5"                          
      />
 </Context>

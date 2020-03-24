@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:scplus="http://scplus.senai.com">
+	xmlns:scplus="http://ecplus.senai.com">
 	
 
 <body>
@@ -12,7 +12,8 @@
 	      <ul class="aw-menu__list">
 	
 	        <li class="aw-menu__item">
-	          <a href="dashboard.html"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
+	          <a th:href="@{/}">
+	          	<i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
 	        </li>
 	
 	        <li class="aw-menu__item">
@@ -22,10 +23,10 @@
 	          </a>
 	      
  	          <ul class="aw-menu__list  aw-menu__list--sublist">
-          		<li class="aw-menu__item  aw-menu__item--link" scplus:menu="@{/usuarios}">
+          		<li class="aw-menu__item  aw-menu__item--link" ecplus:menu="@{/usuarios}">
 	            	<a th:href="@{/usuarios/novo}">Usu&aacuterios</a>
             	</li>
-	           <li class="aw-menu__item  aw-menu__item--link" scplus:menu="@{/configuracoes}">
+	           <li class="aw-menu__item  aw-menu__item--link" ecplus:menu="@{/configuracoes}">
 	            	<a th:href="@{/configuracoes/novo}">Configura&ccedil&atildeo</a>
             	</li>
 	          </ul> 
@@ -38,7 +39,7 @@
 	          </a>
 	
 	          <ul class="aw-menu__list  aw-menu__list--sublist">
-	             <li class="aw-menu__item  aw-menu__item--link" scplus:menu="@{/usuarios}">
+	             <li class="aw-menu__item  aw-menu__item--link" ecplus:menu="@{/usuarios}">
 	            	<a th:href="@{/usuarios}">Usu&aacuterios</a>
             	</li>
 	            <!-- <li class="aw-menu__item  aw-menu__item--link" scplus:menu="@{/configuracoes}">

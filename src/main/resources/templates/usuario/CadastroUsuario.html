@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:scplus="http://scplus.senai.com"
+	xmlns:scplus="http://ecplus.senai.com"
 	xmlns:data="http://www.thymeleaf.org/extras/data">
 
 <head>
@@ -36,31 +36,31 @@
 		<div class="container-fluid">
 			<form method="POST" th:object="${usuario}" class="form-vertical  js-formulario-principal"
 					th:action="@{/usuarios/novo} ? @{/usuarios/novo} : @{/usuarios/{codigo}(codigo=${usuario.codigo})}">
-				<scplus:message/>
+				<ecplus:message/>
 				
 				<input type="hidden" th:field="*{codigo}"/>
 				
 				<div class="row">
-					<div class="form-group  col-sm-12  bw-required" scplus:classforerror="nome">
+					<div class="form-group  col-sm-12  bw-required" ecplus:classforerror="nome">
 						<label for="nome" class="control-label">Nome</label>
 						<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
 					</div>
 				</div>
 					
 				<div class="row">
-					<div class="form-group  col-sm-6  bw-required" scplus:classforerror="email">
+					<div class="form-group  col-sm-6  bw-required" ecplus:classforerror="email">
 						<label for="email" class="control-label">E-mail</label>
 						<input type="text" class="form-control" id="email" th:field="*{email}"/>
 					</div>
 				</div>
 				
 				<div class="row">
-					<div class="form-group  col-sm-3" scplus:classforerror="senha" th:classappend="${usuario.novo} ? bw-required">
+					<div class="form-group  col-sm-3" ecplus:classforerror="senha" th:classappend="${usuario.novo} ? bw-required">
 						<label for="senha" class="control-label">Senha</label> 
 						<input type="password" class="form-control" id="senha" th:field="*{senha}"/>
 					</div>
 					
-					<div class="form-group  col-sm-3" scplus:classforerror="confirmacaoSenha">
+					<div class="form-group  col-sm-3" ecplus:classforerror="confirmacaoSenha">
 						<label for="confirmacaoSenha" class="control-label">Confirma&ccedil&atildeo de senha</label> 
 						<input type="password" class="form-control" id="confirmacaoSenha" th:field="*{confirmacaoSenha}"/>
 					</div>
@@ -83,7 +83,7 @@
 
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
-	<script th:src="@{/javascripts/scplus.cancelar.js}"></script>
+	<script th:src="@{/javascripts/ecplus.cancelar.js}"></script>
 	<script>
 		$('.js-status').bootstrapSwitch();
 	</script>
